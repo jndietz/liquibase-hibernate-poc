@@ -1,3 +1,0 @@
-liquibase:
-  change-log: changelog-master.yml
-  enabled: false

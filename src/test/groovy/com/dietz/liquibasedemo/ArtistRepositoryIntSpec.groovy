@@ -8,7 +8,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import spock.lang.Specification
 
 @DataJpaTest
-class LiquibaseMigrationSpec extends Specification {
+class ArtistRepositoryIntSpec extends Specification {
 
     @Autowired
     ArtistRepository repository

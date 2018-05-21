@@ -1,6 +1,0 @@
-liquibase:
-  enabled: false
-
-spring:
-  jpa:
-    show-sql: true
