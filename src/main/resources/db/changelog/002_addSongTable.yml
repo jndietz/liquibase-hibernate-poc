@@ -1,0 +1,28 @@
+databaseChangeLog:
+  - changeSet:
+      id: 002_addSongTable
+      author: req89430
+      changes:
+        - createTable:
+            tableName: song
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: album_id
+                  type: int
+              - column:
+                  name: song_name
+                  type: varchar(255)
+        - addForeignKeyConstraint:
+            constraintName: FK_Song_Album
+            onDelete: NO ACTION
+            referencedTableName: album
+            referencedColumnNames: id
+            baseTableName: song
+            baseColumnNames: album_id

@@ -14,4 +14,7 @@ class Album {
 
     @ManyToOne
     Artist artist
+
+    @OneToMany(cascade = CascadeType.PERSIST)
+    List<Song> songs
 }

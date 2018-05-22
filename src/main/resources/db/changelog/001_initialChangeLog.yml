@@ -1,0 +1,47 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001_initialChangeLog.yml
+      author: req89430
+      changes:
+        - createTable:
+            tableName: artist
+            columns:
+              - column:
+                  name: id
+                  autoIncrement: true
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar2(255)
+        - createTable:
+            tableName: album
+            columns:
+              - column:
+                  name: id
+                  autoIncrement: true
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar2(255)
+              - column:
+                  name: release_year
+                  type: int
+              - column:
+                  name: artist_id
+                  type: int
+        - addForeignKeyConstraint:
+            comment: FK_Child_Parent
+            constraintName: FK_Album_Artist
+            onDelete: CASCADE
+            comment: referencedTableName can be thought of as parent
+            referencedTableName: artist
+            referencedColumnNames: id
+            comment: baseTableName can be thought of as child
+            baseTableName: album
+            baseColumnNames: artist_id

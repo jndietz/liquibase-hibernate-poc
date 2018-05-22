@@ -2,6 +2,7 @@ buildscript {
     dependencies {
         classpath "com.h2database:h2:1.4.197"
         classpath "org.yaml:snakeyaml:1.21"
+        classpath "com.microsoft.sqlserver:mssql-jdbc:6.4.0.jre8"
     }
 }
 
@@ -20,25 +21,27 @@ repositories {
 liquibase {
     activities {
         main {
-            changeLogFile "src/main/resources/changelog-master.yaml"
-            url 'hibernate:spring:com.dietz.liquibasedemo.entity'
-            driver "org.h2.Driver"
+            changeLogFile "src/main/resources/db/changelog/000_db.changelog-master.yml"
+            url "jdbc:sqlserver://localhost:1433;databaseName=TestDB"
+            username "dietz"
+            password "p@55w0rd"
+            driver "com.microsoft.sqlserver.jdbc.SQLServerDriver"
         }
     }
 }
 
 dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.4.15'
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '1.4.2.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: SPRING_BOOT_VERSION
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: SPRING_BOOT_VERSION
 
-
-    compile group: 'org.liquibase', name: 'liquibase-core', version: '3.5.3'
+    compile group: 'org.liquibase', name: 'liquibase-core', version: '3.6.1'
     compile group: 'org.liquibase.ext', name: 'liquibase-hibernate5', version: '3.6'
     compile ("org.liquibase.ext:liquibase-hibernate5:3.6")
+    compile group: 'com.microsoft.sqlserver', name: 'mssql-jdbc', version: '6.4.0.jre8'
 
-    testCompile group: 'com.h2database', name: 'h2', version: '1.4.197'
     testCompile group: 'org.spockframework', name: 'spock-core', version: '1.1-groovy-2.4'
     testCompile group: 'org.spockframework', name: 'spock-spring', version: '1.1-groovy-2.4'
-    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '1.4.2.RELEASE'
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: SPRING_BOOT_VERSION
 
 }

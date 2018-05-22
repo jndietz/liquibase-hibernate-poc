@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - include:
+      file: 001_initialChangeLog.yml
+      relativeToChangelogFile: true
+  - include:
+      file: 002_addSongTable.yml
+      relativeToChangelogFile: true

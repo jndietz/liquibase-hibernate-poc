@@ -1,6 +1,15 @@
 liquibase:
-  enabled: false
+  enabled: true
+  drop-first: true
+  change-log: db/changelog/000_db.changelog-master.yml
 
 spring:
   jpa:
     show-sql: true
+    hibernate:
+      ddl-auto: none
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;databaseName=TestDB
+    username: dietz
+    password: p@55w0rd
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
